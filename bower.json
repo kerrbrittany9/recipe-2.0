@@ -1,0 +1,21 @@
+{
+  "name": "Recipes",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Larry <larryjamestaylor@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "install": "^1.0.4"
+  }
+}
