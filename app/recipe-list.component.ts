@@ -14,6 +14,8 @@ import { Recipe } from './recipe.model';
     <li [class]="tastinessColor(currentRecipe)" (click)='isUsed(currentRecipe)' *ngFor="let currentRecipe of childRecipeList | used:filterByUsed">
       {{currentRecipe.title}}-- {{currentRecipe.tastiness}}/10
       <button (click)='editButtonHasBeenClicked(currentRecipe)' class='btn btn-info'>Edit</button>
+      <input *ngIf="currentRecipe.used === true" type="checkbox" checked (click)="toggleUsed(currentRecipe, false)"/>
+       <input *ngIf="currentRecipe.used === false" type="checkbox" (click)="toggleUsed(currentRecipe, true)"/>
       <ul  *ngFor="let currentIngredient of currentRecipe.ingredients">
         <li>{{currentIngredient}}</li>
       </ul>
@@ -50,4 +52,7 @@ export class RecipeListComponent {
       return "bg-warning";
     }
   }
+  toggleUsed(clickedRecipe: Recipe, setUsed: boolean) {
+   clickedRecipe.used = setUsed;
+ }
 }
