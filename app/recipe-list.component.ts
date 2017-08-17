@@ -5,8 +5,13 @@ import { Recipe } from './recipe.model';
 @Component({
   selector: 'recipe-list',
   template: `
+  <select (change)='onChange($event.target.value)'>
+      <option value="allRecipes">All Recipes</option>
+      <option value="usedRecipes">Used Recipes</option>
+      <option value="unusedRecipes" selected="selected">Unused Recipes</option>
+    </select>
   <ul>
-    <li [class]="tastinessColor(currentRecipe)" (click)='isUsed(currentRecipe)' *ngFor="let currentRecipe of childRecipeList">
+    <li [class]="tastinessColor(currentRecipe)" (click)='isUsed(currentRecipe)' *ngFor="let currentRecipe of childRecipeList | used:filterByUsed">
       {{currentRecipe.title}}-- {{currentRecipe.tastiness}}/10
       <button (click)='editButtonHasBeenClicked(currentRecipe)' class='btn btn-info'>Edit</button>
       <ul  *ngFor="let currentIngredient of currentRecipe.ingredients">
@@ -22,12 +27,16 @@ export class RecipeListComponent {
   @Input() childRecipeList: Recipe[];
   @Output() clickSender = new EventEmitter();
 
+  filterByUsed: string = 'unusedRecipes';
   isUsed(clickedRecipe: Recipe){
     if(clickedRecipe.used === true) {
       alert('this recipe has been used');
     } else {
       alert('this recipe has not been used');
     }
+  }
+  onChange(optionForMenu) {
+    this.filterByUsed = optionForMenu;
   }
   editButtonHasBeenClicked(recipeToEdit: Recipe) {
     this.clickSender.emit(recipeToEdit);
