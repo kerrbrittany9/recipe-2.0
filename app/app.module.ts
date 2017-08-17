@@ -4,10 +4,11 @@ import { AppComponent }   from './app.component';
 import { FormsModule }   from '@angular/forms';
 import { RecipeListComponent }  from './recipe-list.component';
 import { EditRecipeComponent } from './edit-recipe.component';
+import { NewRecipeComponent } from './new-recipe.component';
 
 @NgModule({
   imports: [ BrowserModule, FormsModule ],
-  declarations: [ AppComponent, RecipeListComponent, EditRecipeComponent,
+  declarations: [ AppComponent, RecipeListComponent, EditRecipeComponent, NewRecipeComponent
   ],
   bootstrap:    [ AppComponent ]
 })

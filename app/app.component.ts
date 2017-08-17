@@ -10,6 +10,7 @@ import { Recipe } from './recipe.model';
   <recipe-list [childRecipeList]='masterRecipeList' (clickSender)='editRecipe($event)'></recipe-list>
     <hr>
     <edit-recipe [childSelectedRecipe]="selectedRecipe"  (doneButtonClickedSender)="finishedEditing()"></edit-recipe>
+    <new-recipe (newRecipeSender)="addRecipe($event)"></new-recipe>
   </div>
   `
 })
@@ -27,5 +28,8 @@ export class AppComponent {
   }
   finishedEditing() {
     this.selectedRecipe = null;
+  }
+  addRecipe(newRecipeFromChild: Recipe) {
+    this.masterRecipeList.push(newRecipeFromChild);
   }
 }
